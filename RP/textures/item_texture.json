@@ -1,0 +1,202 @@
+{
+	"texture_data": {
+		"tev_rage": {
+			"textures": "textures/items/guardianweapon_rage"
+		},
+		"tev_wise": {
+			"textures": "textures/items/guardianweapon_wise"
+		},
+		"tev_menace": {
+			"textures": "textures/items/guardianweapon_menace"
+		},
+		"tev_thorium_helmet": {
+			"textures": "textures/items/thorium_helmet"
+		},
+		"tev_thorium_chestplate": {
+			"textures": "textures/items/thorium_chestplate"
+		},
+		"tev_thorium_leggings": {
+			"textures": "textures/items/thorium_leggings"
+		},
+		"tev_thorium_boots": {
+			"textures": "textures/items/thorium_boots"
+		},
+		"tev_test_helmet": {
+			"textures": "textures/items/test_helmet"
+		},
+		"tev_test_chestplate": {
+			"textures": "textures/items/test_chestplate"
+		},
+		"tev_test_leggings": {
+			"textures": "textures/items/test_leggings"
+		},
+		"tev_test_boots": {
+			"textures": "textures/items/test_boots"
+		},
+		"tev_thoriumessence": {
+			"textures": "textures/items/thorium_essence"
+		},
+		"tev_thoriumsword": {
+			"textures": "textures/items/thorium_sword"
+		},
+		"tev_kwer": {
+			"textures": "textures/items/kwer"
+		},
+		"tev_classability": {
+			"textures": "textures/items/ability"
+		},
+		"tev_ultimateberrysword": {
+			"textures": "textures/items/berry_ultimatesword"
+		},
+		"tev_essencesword": {
+			"textures": "textures/items/moneysword"
+		},
+		"tev_sword": {
+			"textures": "textures/items/berry_sword"
+		},
+		"witherweapons_witherrage": {
+			"textures": "textures/items/witherrage"
+		},
+		"witherweapons_witherwise": {
+			"textures": "textures/items/witherwise2"
+		},
+		"witherweapons_withermenace": {
+			"textures": "textures/items/withermenace"
+		},
+		"witherweapons_travelboots": {
+			"textures": "textures/items/boots"
+		},
+		"witherweapons_travelbootse": {
+			"textures": "textures/items/boots"
+		},
+		"tev_essenceswordbooster": {
+			"textures": "textures/items/essenceswordbooster"
+		},
+		"tev_chungisword": {
+			"textures": "textures/items/chungisword"
+		},
+		"tev_crystalblade": {
+			"textures": "textures/items/crystalsword"
+		},
+		"tev_corruptedissue": {
+			"textures": "textures/items/corruptedtissue"
+		},
+		"kakui_menuopener": {
+			"textures": "textures/items/kakui_menuopener"
+		},
+		"dungeonupdate1_blackhole.json": {
+			"textures": "textures/items/dungeonupdate1_blackhole"
+		},
+		"dungeonupdate1_bonesword.json": {
+			"textures": "textures/items/dungeonupdate1_bonesword"
+		},
+		"dungeonupdate1_shard.json": {
+			"textures": "textures/items/dungeonupdate1_shard"
+		},
+		"berry_pickaxe.json": {
+			"textures": "textures/items/berry_pickaxe"
+		},
+		"berryshard": {
+			"textures": "textures/items/berryshard"
+		},
+		"magicalbladeenchantedwithwood": {
+			"textures": "textures/items/magicalbladeenchantedwithwood"
+		},
+		"tev_compressedbones": {
+			"textures": "textures/items/compressedbones"
+		},
+		"tev_sculkedessence": {
+			"textures": "textures/items/sculkedessence"
+		},
+		"sculkore_shard": {
+			"textures": "textures/items/sculkore_shard"
+		},
+		"tev_sculkoreshard": {
+			"textures": "textures/items/sculkore_shard"
+		},
+		"tev_sculkshard": {
+			"textures": "textures/items/sculkore_shard"
+		},
+		"tev_thoriumingot": {
+			"textures": "textures/items/thoriumingot"
+		},
+		"tev_truenetherite_helmet": {
+			"textures": "textures/items/truenetherite_helmet"
+		},
+		"tev_truenetherite_chestplate": {
+			"textures": "textures/items/truenetherite_chestplate"
+		},
+		"tev_truenetherite_leggings": {
+			"textures": "textures/items/truenetherite_leggings"
+		},
+		"tev_truenetherite_boots": {
+			"textures": "textures/items/truenetherite_boots"
+		},
+		"trueleather_helmet": {
+			"textures": "textures/items/trueleather_helmet"
+		},
+		"tev_trueleather_chestplate": {
+			"textures": "textures/items/trueleather_chestplate"
+		},
+		"tev_trueleather_leggings": {
+			"textures": "textures/items/trueleather_leggings"
+		},
+		"tev_trueleather_boots": {
+			"textures": "textures/items/trueleather_boots"
+		},
+		"tev_iron_helmet": {
+			"textures": "textures/items/iron_helmet"
+		},
+		"tev_iron_chestplate": {
+			"textures": "textures/items/iron_chestplate"
+		},
+		"tev_iron_leggings": {
+			"textures": "textures/items/iron_leggings"
+		},
+		"tev_iron_boots": {
+			"textures": "textures/items/iron_boots"
+		},
+		"tev_trueiron_helmet": {
+			"textures": "textures/items/trueiron_helmet"
+		},
+		"tev_trueiron_chestplate": {
+			"textures": "textures/items/trueiron_chestplate"
+		},
+		"tev_trueiron_leggings": {
+			"textures": "textures/items/trueiron_leggings"
+		},
+		"tev_trueiron_boots": {
+			"textures": "textures/items/trueiron_boots"
+		},
+		"tev_truediamond_helmet": {
+			"textures": "textures/items/truediamond_helmet"
+		},
+		"tev_truediamond_chestplate": {
+			"textures": "textures/items/truediamond_chestplate"
+		},
+		"tev_truediamond_leggings": {
+			"textures": "textures/items/truediamond_leggings"
+		},
+		"tev_truediamond_boots": {
+			"textures": "textures/items/truediamond_boots"
+		},
+		"tev_summongoatboss": {
+			"textures": "textures/items/summongoatboss"
+		},
+		"kaksword1_nikczemneostrze": {
+			"textures": "textures/items/kaksword1_nikczemneostrze"
+		},
+		"pa_thundersword": {
+			"textures": "textures/items/pa_thundersword"
+		},
+		"kaksword1_glitchsword": {
+			"textures": "textures/items/kaksword1_glitchsword"
+		},
+		"kakwand_amethystsword": {
+			"textures": "textures/items/kakwand_amethystwand"
+		},
+		"tev_forbiddenplant": {
+			"textures": "textures/items/forbiddenplant"
+		}
+	}
+}

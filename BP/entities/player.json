@@ -1,0 +1,260 @@
+{
+	"format_version": "1.16.100",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "minecraft:player",
+			"is_spawnable": false,
+			"is_summonable": false,
+			"is_experimental": false
+		},
+		"component_groups": {
+			"tev:mageclass": {
+				"minecraft:health": {
+					"value": 20,
+					"max": 20
+				},
+				"minecraft:attack": {
+					"damage": 1
+				}
+			},
+			"tev:tankclass": {
+				"minecraft:health": {
+					"max": 40,
+					"value": 40
+				},
+				"minecraft:attack": {
+					"damage": 1
+				}
+			},
+			"tev:deathmode": {
+				"minecraft:damage_sensor": {
+					"triggers": {
+						"cause": "all",
+						"damage_multiplier": 1000
+					}
+				}
+			},
+			"tev:assassinclass": {
+				"minecraft:health": {
+					"max": 10,
+					"value": 10
+				},
+				"minecraft:attack": {
+					"damage": 8,
+					"effect_duration": 2,
+					"effect_name": "slowness"
+				}
+			}
+		},
+		"components": {
+			"minecraft:experience_reward": {
+				"on_death": "math.min(query.player_level*7,100)"
+			},
+			"minecraft:type_family": {
+				"family": [
+					"player"
+				]
+			},
+			"minecraft:is_hidden_when_invisible": {},
+			"minecraft:loot": {
+				"table": "loot_tables/empty.json"
+			},
+			"minecraft:collision_box": {
+				"width": 0.6,
+				"height": 1.8
+			},
+			"minecraft:can_climb": {},
+			"minecraft:movement": {
+				"value": 0.11
+			},
+			"minecraft:hurt_on_condition": {
+				"damage_conditions": [
+					{
+						"filters": {
+							"test": "in_lava",
+							"subject": "self",
+							"operator": "==",
+							"value": true
+						},
+						"cause": "lava",
+						"damage_per_tick": 6
+					}
+				]
+			},
+			"minecraft:attack": {
+				"damage": 1
+			},
+			"minecraft:player.saturation": {
+				"value": 20
+			},
+			"minecraft:player.exhaustion": {
+				"value": 0,
+				"max": 4
+			},
+			"minecraft:player.level": {
+				"value": 0,
+				"max": 500
+			},
+			"minecraft:player.experience": {
+				"value": 0,
+				"max": 1
+			},
+			"minecraft:damage_sensor": {
+				"triggers": {
+					"cause": "all",
+					"on_damage": {
+						"event": "tev:hardmode"
+					}
+				}
+			},
+			"minecraft:breathable": {
+				"total_supply": 15,
+				"suffocate_time": -1,
+				"inhale_time": 3.75,
+				"generates_bubbles": false
+			},
+			"minecraft:nameable": {
+				"always_show": true,
+				"allow_name_tag_renaming": false
+			},
+			"minecraft:physics": {},
+			"minecraft:pushable": {
+				"is_pushable": false,
+				"is_pushable_by_piston": true
+			},
+			"minecraft:insomnia": {
+				"days_until_insomnia": 3
+			},
+			"minecraft:rideable": {
+				"seat_count": 2,
+				"family_types": [
+					"parrot_tame"
+				],
+				"pull_in_entities": true,
+				"seats": [
+					{
+						"position": [
+							0.4,
+							-0.2,
+							-0.1
+						],
+						"min_rider_count": 0,
+						"max_rider_count": 0,
+						"lock_rider_rotation": 0
+					},
+					{
+						"position": [
+							-0.4,
+							-0.2,
+							-0.1
+						],
+						"min_rider_count": 1,
+						"max_rider_count": 2,
+						"lock_rider_rotation": 0
+					}
+				]
+			},
+			"minecraft:conditional_bandwidth_optimization": {},
+			"minecraft:block_climber": {}
+		},
+		"events": {
+			"tev:magetoggle": {
+				"sequence": [
+					{
+						"remove": {
+							"component_groups": [
+								"tev:tankclass",
+								"tev:assassinclass"
+							]
+						}
+					},
+					{
+						"add": {
+							"component_groups": [
+								"tev:mageclass"
+							]
+						}
+					},
+					{
+						"run_command": {
+							"command": "/scoreboard players set @s class 2",
+							"target": "self"
+						}
+					}
+				]
+			},
+			"tev:removehardmode": {
+				"remove": {
+					"component_groups": [
+						"tev:deathmode"
+					]
+				}
+			},
+			"tev:addhardmode": {
+				"add": {
+					"component_groups": [
+						"tev:deathmode"
+					]
+				}
+			},
+			"tev:hardmode": {
+				"run_command": {
+					"command": [
+						"function apocalypsemode"
+					],
+					"target": "self"
+				}
+			},
+			"tev:assassintoggle": {
+				"sequence": [
+					{
+						"remove": {
+							"component_groups": [
+								"tev:mageclass",
+								"tev:tankclass"
+							]
+						}
+					},
+					{
+						"add": {
+							"component_groups": [
+								"tev:assassinclass"
+							]
+						}
+					},
+					{
+						"run_command": {
+							"command": "/scoreboard players set @s class 1",
+							"target": "self"
+						}
+					}
+				]
+			},
+			"tev:tanktoggle": {
+				"sequence": [
+					{
+						"remove": {
+							"component_groups": [
+								"tev:mageclass",
+								"tev:assassinclass"
+							]
+						}
+					},
+					{
+						"add": {
+							"component_groups": [
+								"tev:tankclass"
+							]
+						}
+					},
+					{
+						"run_command": {
+							"command": "/scoreboard players set @s class 3",
+							"target": "self"
+						}
+					}
+				]
+			}
+		}
+	}
+}

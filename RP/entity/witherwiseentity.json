@@ -10,7 +10,7 @@
 				"default": "textures/entity/witherwiseentity"
 			},
 			"geometry": {
-				"default": "geometry.witherwiseentity"
+				"default": "geometry.item_sprite"
 			},
 			"render_controllers": [
 				"controller.render.witherwiseentity"

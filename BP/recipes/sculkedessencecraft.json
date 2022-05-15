@@ -8,9 +8,9 @@
             "crafting_table"
         ],
         "pattern": [
-            "BBB",
+            " B ",
             "BCB",
-            "BBB"
+            " B "
         ],
         "key": {
             "B": {

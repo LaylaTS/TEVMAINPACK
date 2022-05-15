@@ -1,6 +1,9 @@
 {
 	"values": [
 		"friendlyskullbehavior",
-		"woodenaxereplacer"
+		"woodenaxereplacer",
+		"playertime",
+		"forcedifficulty",
+		"assassinskullbehavior"
 	]
 }

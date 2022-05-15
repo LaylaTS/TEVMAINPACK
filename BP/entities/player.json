@@ -1,5 +1,5 @@
 {
-	"format_version": "1.16.100",
+	"format_version": "1.18.20",
 	"minecraft:entity": {
 		"description": {
 			"identifier": "minecraft:player",
@@ -38,18 +38,44 @@
 					"value": 0.5
 				}
 			},
+			"tev:normalmode": {
+				"minecraft:damage_sensor": {
+					"triggers": {
+						"cause": "all",
+						"on_damage": {
+							"event": "tev:on_damageevents",
+							"target": "self"
+						}
+					}
+				}
+			},
+			"tev:apocalypsemode": {
+				"minecraft:damage_sensor": {
+					"triggers": {
+						"cause": "all",
+						"damage_multiplier": 2,
+						"on_damage": {
+							"event": "tev:on_damageevents",
+							"target": "self"
+						}
+					}
+				}
+			},
 			"tev:deathmode": {
 				"minecraft:damage_sensor": {
 					"triggers": {
 						"cause": "all",
-						"damage_multiplier": 1000
+						"damage_multiplier": 10000000,
+						"on_damage": {
+							"event": "tev:on_damageevents"
+						}
 					}
 				}
 			},
 			"tev:assassinclass": {
 				"minecraft:health": {
-					"max": 15,
-					"value": 15
+					"max": 16,
+					"value": 16
 				},
 				"minecraft:attack": {
 					"damage": 8,
@@ -120,13 +146,9 @@
 				"value": 0,
 				"max": 1
 			},
-			"minecraft:damage_sensor": {
-				"triggers": {
-					"cause": "all",
-					"on_damage": {
-						"event": "tev:hardmode"
-					}
-				}
+			"minecraft:on_hurt": {
+				"event": "tev:on_damageevents",
+				"target": "self"
 			},
 			"minecraft:breathable": {
 				"total_supply": 15,
@@ -179,6 +201,103 @@
 			"minecraft:block_climber": {}
 		},
 		"events": {
+			"tev:normalmode": {
+				"remove": {
+					"component_groups": [
+						"tev:apocalypsemode",
+						"tev:deathmode"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"tev:normalmode"
+					]
+				},
+				"run_command": {
+					"command": "/scoreboard players set @s difficulty 0"
+				}
+			},
+			"tev:apocalypsemode": {
+				"remove": {
+					"component_groups": [
+						"tev:normalmode",
+						"tev:deathmode"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"tev:apocalypsemode"
+					]
+				},
+				"run_command": {
+					"command": "/scoreboard players set @s difficulty 1"
+				}
+			},
+			"tev:deathmode": {
+				"remove": {
+					"component_groups": [
+						"tev:normalmode",
+						"tev:deathmode"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"tev:deathmode"
+					]
+				},
+				"run_command": {
+					"command": "/scoreboard players set @s difficulty 2"
+				}
+			},
+			"tev:on_damageevents": {
+				"sequence": [
+					{
+						/*THORNS ACCESSORY*/
+						"run_command": {
+							"command": [
+								"/damage @e[type=!player,type=!npc,r=4] 1 thorns"
+							],
+							"target": "self"
+						},
+						"filters": {
+							"test": "has_equipment",
+							"subject": "self",
+							"value": "tev:thornsaccessory",
+							"domain": "hand"
+						}
+					}
+				]
+			},
+			"tev:ondeathevent": {
+				"sequence": [
+					{
+						/* Forbidden Plant Ability*/
+						"sequence": [
+							{
+								"filters": {
+									"test": "has_equipment",
+									"subject": "self",
+									"value": "tev:forbiddenplant",
+									"domain": "hand"
+								},
+								"run_command": {
+									"command": "/effect @a[r=8] instant_health 0 1"
+								}
+							}
+						]
+					},
+					{
+						/* FOG RESET */
+						"run_command": {
+							"command": [
+								"/fog @s push minecraft:fog_default mainfog",
+								"/fog @s remove mainfog",
+								"/fog @s remove mainfog"
+							]
+						}
+					}
+				]
+			},
 			"tev:magetoggle": {
 				"sequence": [
 					{
@@ -201,48 +320,6 @@
 							"command": "/scoreboard players set @s class 2",
 							"target": "self"
 						}
-					}
-				]
-			},
-			"tev:removehardmode": {
-				"remove": {
-					"component_groups": [
-						"tev:deathmode"
-					]
-				}
-			},
-			"tev:addhardmode": {
-				"add": {
-					"component_groups": [
-						"tev:deathmode"
-					]
-				}
-			},
-			"tev:hardmode": {
-				"run_command": {
-					"command": [
-						"function apocalypsemode"
-					],
-					"target": "self"
-				}
-			},
-			"tev:ondeathevent": {
-				"sequence": [
-					{
-						/* Forbidden Plant Ability*/
-						"sequence": [
-							{
-								"filters": {
-									"test": "has_equipment",
-									"subject": "self",
-									"value": "tev:forbiddenplant",
-									"domain": "hand"
-								},
-								"run_command": {
-									"command": "/summon bat"
-								}
-							}
-						]
 					}
 				]
 			},
@@ -292,6 +369,140 @@
 						"run_command": {
 							"command": "/scoreboard players set @s class 3",
 							"target": "self"
+						}
+					}
+				]
+			},
+			"tev:forbiddenbladeonhit": {
+				"sequence": [
+					{
+						"filters": {
+							"test": "is_sneaking",
+							"subject": "self",
+							"value": true
+						},
+						"sequence": [
+							{
+								"filters": {
+									"all_of": [
+										{
+											"test": "has_mob_effect",
+											"subject": "self",
+											"value": "speed"
+										},
+										{
+											"test": "has_mob_effect",
+											"subject": "self",
+											"value": "strength"
+										},
+										{
+											"test": "has_mob_effect",
+											"subject": "self",
+											"value": "jump_boost"
+										}
+									]
+								},
+								"run_command": {
+									"command": [
+										"/tag @s add dodging",
+										"/summon tev:smalldodgewave ^ ^ ^1"
+									]
+								}
+							}
+						]
+					},
+					{
+						"filters": {
+							"test": "is_sneaking",
+							"subject": "self",
+							"value": false
+						},
+						"sequence": [
+							{
+								"run_command": {
+									"command": "/effect @s speed 2 1"
+								}
+							},
+							{
+								"filters": {
+									"test": "has_mob_effect",
+									"subject": "self",
+									"value": "speed"
+								},
+								"run_command": {
+									"command": "/effect @s strength 2 1 true"
+								}
+							},
+							{
+								"filters": {
+									"all_of": [
+										{
+											"test": "has_mob_effect",
+											"subject": "self",
+											"value": "speed"
+										},
+										{
+											"test": "has_mob_effect",
+											"subject": "self",
+											"value": "strength"
+										}
+									]
+								},
+								"run_command": {
+									"command": "/effect @s jump_boost 2 1 true"
+								}
+							}
+						]
+					}
+				]
+			},
+			"tev:forbiddenbladerclick": {
+				"sequence": [
+					{
+						"filters": {
+							"test": "is_sneaking",
+							"value": false,
+							"subject": "self"
+						},
+						"run_command": {
+							"command": [
+								"/tag @s add dodging",
+								"/summon tev:dodgewave ^ ^ ^-1"
+							]
+						}
+					},
+					{
+						"filters": {
+							"all_of": [
+								{
+									"test": "is_sneaking",
+									"subject": "self",
+									"value": true
+								},
+								{
+									"test": "has_mob_effect",
+									"value": "jump_boost",
+									"subject": "self"
+								},
+								{
+									"test": "has_mob_effect",
+									"value": "speed",
+									"subject": "self"
+								},
+								{
+									"test": "has_mob_effect",
+									"value": "strength",
+									"subject": "self"
+								}
+							]
+						},
+						"run_command": {
+							"command": [
+								"/effect @s levitation 1 10 true",
+								"/effect @s slow_falling 5 255 true",
+								"/summon tev:assassinskull ^2  ^5  ^-2",
+								"/summon tev:assassinskull ^-2 ^5 ^-2 "
+							]
 						}
 					}
 				]

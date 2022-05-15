@@ -6,7 +6,7 @@
 		"WojtekBB"
 	],
 	"targetVersion": "1.18.20",
-	"description": "MAIN TEV PACK\npack by WojtekBB using smelly API",
+	"description": "MAIN TEV PACK",
 	"experimentalGameplay": {
 		"holidayCreatorFeatures": true,
 		"creationOfCustomBiomes": true,
@@ -35,7 +35,8 @@
 				{
 					"packName": "TEVMAINPACK"
 				}
-			]
+			],
+			"formatVersionCorrection"
 		]
 	}
 }
